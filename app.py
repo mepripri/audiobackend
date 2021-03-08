@@ -1,14 +1,14 @@
-from flask import Flask, json, request
+from flask import Flask, request
 import os
 import librosa
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 
-applib = Flask(__name__)
+app = Flask(__name__)
 
 
-@applib.route('/', methods = ['GET', 'POST'])
+@app.route('/', methods = ['GET', 'POST'])
 def hello():   
     filelist = os.listdir('static/Audio Files 2') 
     train_df = pd.DataFrame(filelist)
@@ -28,17 +28,7 @@ def hello():
     print(X_test)
     ss = StandardScaler()
     X_test = ss.fit_transform(X_test)
-    record = json.dumps(X_test.tolist())
-    with open('data.json', 'r') as f:
-        data = f.read()
-    if not data:
-        records = [record]
-    else:
-        records = json.loads(data)
-        records.append(record)
-    with open('data.json', 'w') as f:
-        f.write(json.dumps(records, indent=2))
-    return None
+    return print(X_test)
     
 def extract_features(files):
     file_name = os.path.join(os.path.abspath('static/Audio Files 2')+'/'+str(files.file))
