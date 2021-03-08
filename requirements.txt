@@ -4,3 +4,4 @@ matplotlib
 librosa
 pandas
 scikit-learn
+gunicorn
