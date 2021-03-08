@@ -5,3 +5,4 @@ librosa
 pandas
 scikit-learn
 gunicorn
+Flask
