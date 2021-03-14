@@ -1,4 +1,4 @@
-python==3.7
+python==3.7.0
 numpy==1.18.5
 Keras==2.4.3
 matplotlib==2.2.5
