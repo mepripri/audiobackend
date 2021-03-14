@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 @app.route('/', methods = ['GET', 'POST'])
 def hello():   
-    filelist = os.listdir('static/Audio Files 2') 
+    filelist = os.listdir('static') 
     train_df = pd.DataFrame(filelist)
     train_df = train_df.rename(columns={0:'file'})
     train_df = train_df.sample(frac=1).reset_index(drop=True)
@@ -31,7 +31,7 @@ def hello():
     return print(X_test)
     
 def extract_features(files):
-    file_name = os.path.join(os.path.abspath('static/Audio Files 2')+'/'+str(files.file))
+    file_name = os.path.join(os.path.abspath('static')+'/'+str(files.file))
     X, sample_rate = librosa.load(file_name, res_type='kaiser_fast') 
     mfccs = np.mean(librosa.feature.mfcc(y=X, sr=sample_rate, n_mfcc=40).T,axis=0)
     stft = np.abs(librosa.stft(X))
