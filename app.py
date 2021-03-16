@@ -28,7 +28,7 @@ def hello():
     print(X_test)
     ss = StandardScaler()
     X_test = ss.fit_transform(X_test)
-    return print(X_test)
+    return X_test
     
 def extract_features(files):
     file_name = os.path.join(os.path.abspath('static')+'/'+str(files.file))
