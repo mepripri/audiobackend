@@ -33,6 +33,7 @@ def hello():
 def extract_features(files):
     file_name = os.path.join(os.path.abspath('static')+'/'+str(files.file))
     X, sample_rate = librosa.load(file_name, res_type='kaiser_fast') 
+    yield "doing"
     mfccs = np.mean(librosa.feature.mfcc(y=X, sr=sample_rate, n_mfcc=40).T,axis=0)
     stft = np.abs(librosa.stft(X))
     chroma = np.mean(librosa.feature.chroma_stft(S=stft, sr=sample_rate).T,axis=0)
