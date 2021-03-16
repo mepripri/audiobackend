@@ -25,7 +25,7 @@ def hello():
                     train_features[i][2], train_features[i][3],
                     train_features[i][4]), axis=0))
     X_test = np.array(features_test)
-    print(X_test)
+    yield str(X_test)
     ss = StandardScaler()
     X_test = ss.fit_transform(X_test)
     return X_test
