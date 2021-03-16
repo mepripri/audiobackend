@@ -33,12 +33,12 @@ def hello():
 def extract_features(files):
     file_name = os.path.join(os.path.abspath('static')+'/'+str(files.file))
     X, sample_rate = librosa.load(file_name, res_type='kaiser_fast') 
-    yield "doing"
+    
     mfccs = np.mean(librosa.feature.mfcc(y=X, sr=sample_rate, n_mfcc=40).T,axis=0)
     stft = np.abs(librosa.stft(X))
+    yield "doing"
     chroma = np.mean(librosa.feature.chroma_stft(S=stft, sr=sample_rate).T,axis=0)
     mel = np.mean(librosa.feature.melspectrogram(X, sr=sample_rate).T,axis=0)
     contrast = np.mean(librosa.feature.spectral_contrast(S=stft, sr=sample_rate).T,axis=0)
-    tonnetz = np.mean(librosa.feature.tonnetz(y=librosa.effects.harmonic(X),
-    sr=sample_rate).T,axis=0)
+    tonnetz = np.mean(librosa.feature.tonnetz(y=librosa.effects.harmonic(X),sr=sample_rate).T,axis=0)
     return mfccs, chroma, mel, contrast, tonnetz
